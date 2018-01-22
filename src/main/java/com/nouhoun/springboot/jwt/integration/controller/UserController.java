@@ -64,6 +64,7 @@ public class UserController {
 //        if (registered == null) {
 //            result.rejectValue("email", "message.regError");
 //        }
+        userJson.setId(user.getId());
         return userJson;
         // rest of the implementation
     }
