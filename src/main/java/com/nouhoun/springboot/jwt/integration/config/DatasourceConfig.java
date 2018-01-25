@@ -1,6 +1,7 @@
 package com.nouhoun.springboot.jwt.integration.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -29,14 +30,20 @@ public class DatasourceConfig {
 
     @Bean
     public DataSource datasource() throws PropertyVetoException {
-        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        EmbeddedDatabase dataSource = builder
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript("sql-scripts/schema.sql")
-                .addScript("sql-scripts/data.sql")
-                .build();
-
-        return dataSource;
+//        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+//        EmbeddedDatabase dataSource = builder
+//                .setType(EmbeddedDatabaseType.H2)
+//                .addScript("sql-scripts/schema.sql")
+//                .addScript("sql-scripts/data.sql")
+//                .build();
+//
+//        return dataSource;
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.url("jdbc:mysql://localhost:3307/back");
+        dataSourceBuilder.username("root");
+        dataSourceBuilder.password("pass1234");
+//        dataSourceBuilder.
+        return dataSourceBuilder.build();
     }
 
     @Bean
