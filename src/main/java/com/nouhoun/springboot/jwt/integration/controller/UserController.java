@@ -2,13 +2,11 @@ package com.nouhoun.springboot.jwt.integration.controller;
 
 import com.nouhoun.springboot.jwt.integration.domain.Role;
 import com.nouhoun.springboot.jwt.integration.domain.User;
-import com.nouhoun.springboot.jwt.integration.service.GenericService;
 import com.nouhoun.springboot.jwt.integration.service.RoleService;
 import com.nouhoun.springboot.jwt.integration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.nouhoun.springboot.jwt.integration.JsonModels.UserJson;
 
@@ -40,8 +38,8 @@ public class UserController {
         List<User> us = userService.findAllUsers() ;
         User user = new User();
 
-        user.setFirstName(userJson.getFirstName());
-        user.setLastName(userJson.getLastName());
+//        user.setFirstName(userJson.getFirstName());
+//        user.setLastName(userJson.getLastName());
         user.setUsername(userJson.getUsername());
         user.setEmail(userJson.getEmail());
         user.setPassword(passwordEncoder.encodePassword(userJson.getEmail(), ""));

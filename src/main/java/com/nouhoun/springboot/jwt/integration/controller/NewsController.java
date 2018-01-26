@@ -1,6 +1,6 @@
 package com.nouhoun.springboot.jwt.integration.controller;
 
-import com.nouhoun.springboot.jwt.integration.domain.RandomCity;
+//import com.nouhoun.springboot.jwt.integration.domain.RandomCity;
 import com.nouhoun.springboot.jwt.integration.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +15,8 @@ public class NewsController {
     private GenericService newsService;
 
 
-    @RequestMapping(value = "/test")
-    public List<RandomCity> getTest() {
-        return newsService.findAllRandomCities();
-    }
+//    @RequestMapping(value = "/test")
+//    public List<RandomCity> getTest() {
+//        return newsService.findAllRandomCities();
+//    }
 }

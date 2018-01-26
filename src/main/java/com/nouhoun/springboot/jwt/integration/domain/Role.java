@@ -1,25 +1,17 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
 import javax.persistence.*;
+import java.util.Collection;
 
-/**
- * Created by nydiarra on 06/05/17.
- */
 @Entity
-@Table(name="app_role")
 public class Role {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="role_name")
-    private String roleName;
-
-    @Column(name="description")
     private String description;
+    private String roleName;
+    private Collection<UserRole> userRolesById;
 
-
+    @Id
+    @Column(name = "id", nullable = false)
     public Long getId() {
         return id;
     }
@@ -28,6 +20,18 @@ public class Role {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "description", nullable = true, length = 255)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Basic
+    @Column(name = "role_name", nullable = true, length = 255)
     public String getRoleName() {
         return roleName;
     }
@@ -36,11 +40,34 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public String getDescription() {
-        return description;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Role role = (Role) o;
+
+        if (id != null ? !id.equals(role.id) : role.id != null) return false;
+        if (description != null ? !description.equals(role.description) : role.description != null) return false;
+        if (roleName != null ? !roleName.equals(role.roleName) : role.roleName != null) return false;
+
+        return true;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
+        return result;
+    }
+
+    @OneToMany(mappedBy = "roleByRoleId")
+    public Collection<UserRole> getUserRolesById() {
+        return userRolesById;
+    }
+
+    public void setUserRolesById(Collection<UserRole> userRolesById) {
+        this.userRolesById = userRolesById;
     }
 }

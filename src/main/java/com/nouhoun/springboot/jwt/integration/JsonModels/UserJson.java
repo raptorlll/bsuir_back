@@ -1,13 +1,8 @@
 package com.nouhoun.springboot.jwt.integration.JsonModels;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nouhoun.springboot.jwt.integration.domain.Role;
-
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
-import  com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by nydiarra on 06/05/17.
  */
