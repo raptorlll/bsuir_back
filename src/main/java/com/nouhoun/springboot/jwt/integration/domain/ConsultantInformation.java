@@ -16,6 +16,19 @@ public class ConsultantInformation {
     private Time availableFrom;
     private Time availableUntil;
 
+
+    private ConsultantGroupUser consultantGroupUser;
+
+    @ManyToOne
+    @JoinColumn(name="consultant_group_user_id")
+    public ConsultantGroupUser getConsultantGroupUser() {
+        return consultantGroupUser;
+    }
+
+    public void setConsultantGroupUser(ConsultantGroupUser consultantGroupUser) {
+        this.consultantGroupUser = consultantGroupUser;
+    }
+
     @Id
     @Column(name = "id", nullable = false)
     public Long getId() {

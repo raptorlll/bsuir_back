@@ -13,12 +13,7 @@ public class User {
     private Collection<ConsultantGroupUser> consultantGroupUsersById;
     private Collection<CustomerInformation> customerInformationsById;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns
-            = @JoinColumn(name = "user_id",
-            referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id",
-                    referencedColumnName = "id"))
+
     private Collection<Role> roles;
 
 
@@ -104,6 +99,12 @@ public class User {
         this.customerInformationsById = customerInformationsById;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns
+            = @JoinColumn(name = "user_id",
+            referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id",
+                    referencedColumnName = "id"))
     public Collection<Role> getRoles() {
         return roles;
     }

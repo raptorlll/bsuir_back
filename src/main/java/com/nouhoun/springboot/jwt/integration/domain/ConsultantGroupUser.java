@@ -100,15 +100,15 @@ public class ConsultantGroupUser {
         this.consultantGroupByConsultantGroutId = consultantGroupByConsultantGroutId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "consultant_group_user_id", nullable = false)
-    public ConsultantInformation getConsultantInformationByUserId() {
-        return consultantInformationByUserId;
-    }
+//    @OneToOne
+//    @JoinColumn(name = "user_id", referencedColumnName = "consultant_group_user_id", nullable = false)
+//    public ConsultantInformation getConsultantInformationByUserId() {
+//        return consultantInformationByUserId;
+//    }
 
-    public void setConsultantInformationByUserId(ConsultantInformation consultantInformationByUserId) {
-        this.consultantInformationByUserId = consultantInformationByUserId;
-    }
+//    public void setConsultantInformationByUserId(ConsultantInformation consultantInformationByUserId) {
+//        this.consultantInformationByUserId = consultantInformationByUserId;
+//    }
 
     @OneToMany(mappedBy = "consultantGroupUserByConsultantGroupUserId")
     public Collection<Conversation> getConversationsById() {

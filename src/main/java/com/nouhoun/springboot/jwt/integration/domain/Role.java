@@ -8,7 +8,6 @@ public class Role {
     private Long id;
     private String description;
     private String roleName;
-    private Collection<UserRole> userRolesById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -60,14 +59,5 @@ public class Role {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "roleByRoleId")
-    public Collection<UserRole> getUserRolesById() {
-        return userRolesById;
-    }
-
-    public void setUserRolesById(Collection<UserRole> userRolesById) {
-        this.userRolesById = userRolesById;
     }
 }

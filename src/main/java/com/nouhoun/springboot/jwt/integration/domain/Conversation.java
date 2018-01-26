@@ -53,8 +53,8 @@ public class Conversation {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "consultant_group_user_id", referencedColumnName = "id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "consultant_group_user_id", nullable = false)
     public ConsultantGroupUser getConsultantGroupUserByConsultantGroupUserId() {
         return consultantGroupUserByConsultantGroupUserId;
     }
