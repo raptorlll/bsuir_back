@@ -1,9 +1,18 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+//@JsonIdentityInfo(
+//        scope=User.class,
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class User {
     private Long id;
     private String password;
@@ -113,6 +122,7 @@ public class User {
     }
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     public Collection<CustomerInformation> getCustomerInformationsById() {
         return customerInformationsById;
     }

@@ -1,10 +1,11 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nouhoun.springboot.jwt.integration.deserializer.UserDeserializer;
-
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -12,12 +13,16 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "customer_information", schema = "back", catalog = "")
+@JsonIdentityInfo(
+        scope=CustomerInformation.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class CustomerInformation {
     private Long id;
     private Date birthData;
     private String additionalInformation;
     private Byte primary;
-    private Collection<Conversation> conversationsById;
+    private Collection<Conversation> conversations;
     private User user;
 
     @Id
@@ -53,7 +58,7 @@ public class CustomerInformation {
     }
 
     @Basic
-    @Column(name = "primary", nullable = false)
+    @Column(name = "is_primary", nullable = false)
     public Byte getPrimary() {
         return primary;
     }
@@ -87,18 +92,24 @@ public class CustomerInformation {
     }
 
     @OneToMany(mappedBy = "customerInformationByCustomerInformationId")
-    public Collection<Conversation> getConversationsById() {
-        return conversationsById;
+    public Collection<Conversation> getConversations() {
+        return conversations;
     }
 
-    public void setConversationsById(Collection<Conversation> conversationsById) {
-        this.conversationsById = conversationsById;
+    public void setConversations(Collection<Conversation> conversationsById) {
+        this.conversations = conversationsById;
     }
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonDeserialize(using = UserDeserializer.class)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+//    @JsonManagedReference
 //    @JsonProperty("u")
+    //https://stackoverflow.com/questions/18306040/jackson-deserialize-jsonidentityreference-alwaysasid-true
     public User getUser() {
         return user;
     }

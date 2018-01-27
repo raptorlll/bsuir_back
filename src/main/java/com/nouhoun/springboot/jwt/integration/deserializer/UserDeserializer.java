@@ -13,21 +13,23 @@ public class UserDeserializer  extends StdDeserializer<User> {
     @Autowired
     UserService userService;
 
-    protected UserDeserializer(Class<?> vc) {
+    UserDeserializer(){
+        this(User.class);
+    }
+    public UserDeserializer(Class<?> vc) {
         super(vc);
     }
 
-    protected UserDeserializer(JavaType valueType) {
+    public UserDeserializer(JavaType valueType) {
         super(valueType);
     }
 
-    protected UserDeserializer(StdDeserializer<?> src) {
+    public UserDeserializer(StdDeserializer<?> src) {
         super(src);
     }
 
     @Override
     public User deserialize(com.fasterxml.jackson.core.JsonParser jsonParser, com.fasterxml.jackson.databind.DeserializationContext deserializationContext) throws IOException, com.fasterxml.jackson.core.JsonProcessingException {
-
         Long id = Long.parseLong(jsonParser.getText());
         return userService.findOne(id);
     }

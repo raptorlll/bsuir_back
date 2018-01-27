@@ -1,9 +1,7 @@
 package com.nouhoun.springboot.jwt.integration.controller;
 
-import com.nouhoun.springboot.jwt.integration.domain.ConsultantInformation;
-import com.nouhoun.springboot.jwt.integration.domain.CustomerInformation;
-import com.nouhoun.springboot.jwt.integration.domain.Role;
-import com.nouhoun.springboot.jwt.integration.domain.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nouhoun.springboot.jwt.integration.domain.*;
 import com.nouhoun.springboot.jwt.integration.service.CustomerInformationService;
 import com.nouhoun.springboot.jwt.integration.service.RoleService;
 import com.nouhoun.springboot.jwt.integration.service.UserService;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.nouhoun.springboot.jwt.integration.JsonModels.UserJson;
 
 import javax.swing.text.html.Option;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,11 +40,45 @@ public class UserController {
 
     @RequestMapping(value = "/client_information", method = RequestMethod.POST)
     public CustomerInformation saveClientInformation(@RequestBody CustomerInformation information) {
+//        information.setConversations(new ArrayList<Conversation>());
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+
+            //Convert object to JSON string
+            String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(information);
+            System.out.println(jsonInString);
+
+            customerInformationService.save(information);
+        }catch (Exception e){
+            System.out.println("e");
+        }
 
 
-        customerInformationService.save(information);
         return  information;
     }
+
+//    @RequestMapping(value = "/client_information", method = RequestMethod.POST)
+//    public CustomerInformation saveClientInformation(@RequestBody CustomerInformation information) {
+////        information.setConversations(new ArrayList<Conversation>());
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//
+//        try {
+//
+//            //Convert object to JSON string
+//            String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(information);
+//            System.out.println(jsonInString);
+//
+//            customerInformationService.save(information);
+//        }catch (Exception e){
+//            System.out.println("e");
+//        }
+//
+//
+//        return  information;
+//    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public UserJson registerUserAccount(@RequestBody UserJson userJson) {

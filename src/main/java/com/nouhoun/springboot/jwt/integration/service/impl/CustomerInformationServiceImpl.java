@@ -2,6 +2,7 @@ package com.nouhoun.springboot.jwt.integration.service.impl;
 
 import com.nouhoun.springboot.jwt.integration.domain.CustomerInformation;
 import com.nouhoun.springboot.jwt.integration.domain.User;
+import com.nouhoun.springboot.jwt.integration.repository.CustomerInformationRepository;
 import com.nouhoun.springboot.jwt.integration.repository.UserRepository;
 import com.nouhoun.springboot.jwt.integration.service.CustomerInformationService;
 import com.nouhoun.springboot.jwt.integration.service.UserService;
@@ -16,15 +17,15 @@ import java.util.List;
 @Service
 public class CustomerInformationServiceImpl implements CustomerInformationService {
     @Autowired
-    private CustomerInformationService customerInformationService;
+    private CustomerInformationRepository customerInformationRepository;
 
     @Override
     public List<CustomerInformation> findAll() {
-        return (List<CustomerInformation>)customerInformationService.findAll();
+        return (List<CustomerInformation>)customerInformationRepository.findAll();
     }
 
     @Override
     public CustomerInformation save(CustomerInformation u) {
-        return customerInformationService.save(u);
+        return customerInformationRepository.save(u);
     }
 }
