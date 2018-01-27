@@ -14,7 +14,7 @@ public class Conversation {
     private Collection<CustomerPayment> customerPaymentsById;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

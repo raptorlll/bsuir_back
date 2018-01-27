@@ -12,7 +12,7 @@ public class ConversationStatusHistory {
     private ConversationStatus conversationStatusByConversationStatusId;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

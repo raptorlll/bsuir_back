@@ -2,7 +2,6 @@ package com.nouhoun.springboot.jwt.integration.domain;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 public class User {
@@ -15,10 +14,12 @@ public class User {
 
 
     private Collection<Role> roles;
+    private String last_name;
+    private String first_name;
 
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -81,6 +82,27 @@ public class User {
         return result;
     }
 
+    @Basic
+    @Column(name = "first_name", nullable = true, length = 50)
+    public String getFirstName() {
+        return first_name;
+    }
+
+    public void setFirstName(String name) {
+        this.first_name = name;
+    }
+
+    @Basic
+    @Column(name = "last_name", nullable = true, length = 50)
+    public String getLastName() {
+        return last_name;
+    }
+
+    public void setLastName(String lastname) {
+        this.last_name = lastname;
+    }
+
+
     @OneToMany(mappedBy = "userByUserId")
     public Collection<ConsultantGroupUser> getConsultantGroupUsersById() {
         return consultantGroupUsersById;
@@ -90,7 +112,7 @@ public class User {
         this.consultantGroupUsersById = consultantGroupUsersById;
     }
 
-    @OneToMany(mappedBy = "userByUserId")
+    @OneToMany(mappedBy = "user")
     public Collection<CustomerInformation> getCustomerInformationsById() {
         return customerInformationsById;
     }

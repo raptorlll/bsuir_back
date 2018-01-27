@@ -24,6 +24,8 @@ public class UserJson {
 
     private List<String> roles;
 
+    private List<String> customerGroup;
+
 //    /**
 //     * Roles are being eagerly loaded here because
 //     * they are a fairly small collection of items for this example.
