@@ -7,15 +7,15 @@ import com.nouhoun.springboot.jwt.integration.service.RoleService;
 import com.nouhoun.springboot.jwt.integration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.nouhoun.springboot.jwt.integration.JsonModels.UserJson;
 
-import javax.swing.text.html.Option;
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by nydiarra on 06/05/17.
@@ -38,47 +38,7 @@ public class UserController {
     @Autowired
     private CustomerInformationService customerInformationService;
 
-    @RequestMapping(value = "/client_information", method = RequestMethod.POST)
-    public CustomerInformation saveClientInformation(@RequestBody CustomerInformation information) {
-//        information.setConversations(new ArrayList<Conversation>());
 
-        ObjectMapper mapper = new ObjectMapper();
-
-        try {
-
-            //Convert object to JSON string
-            String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(information);
-            System.out.println(jsonInString);
-
-            customerInformationService.save(information);
-        }catch (Exception e){
-            System.out.println("e");
-        }
-
-
-        return  information;
-    }
-
-//    @RequestMapping(value = "/client_information", method = RequestMethod.POST)
-//    public CustomerInformation saveClientInformation(@RequestBody CustomerInformation information) {
-////        information.setConversations(new ArrayList<Conversation>());
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//
-//        try {
-//
-//            //Convert object to JSON string
-//            String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(information);
-//            System.out.println(jsonInString);
-//
-//            customerInformationService.save(information);
-//        }catch (Exception e){
-//            System.out.println("e");
-//        }
-//
-//
-//        return  information;
-//    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public UserJson registerUserAccount(@RequestBody UserJson userJson) {

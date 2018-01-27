@@ -22,17 +22,6 @@ import java.util.stream.Collectors;
 public class ResourceController {
     @Autowired
     private GenericService userService;
-//
-//    @RequestMapping(value ="/cities")
-//    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
-//    public List<RandomCity> getUser(){
-//        return userService.findAllRandomCities();
-//    }
-//
-//    @RequestMapping(value ="/test")
-//    public List<RandomCity> getTest(){
-//        return userService.findAllRandomCities();
-//    }
 
     @RequestMapping(value ="/getuserroles")
     @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")

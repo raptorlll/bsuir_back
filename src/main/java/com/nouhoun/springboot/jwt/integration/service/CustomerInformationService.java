@@ -5,8 +5,6 @@ import com.nouhoun.springboot.jwt.integration.domain.User;
 
 import java.util.List;
 
-public interface CustomerInformationService {
-    List<CustomerInformation> findAll();
+public interface CustomerInformationService extends CrudServiceInterface<CustomerInformation, Long> {
 
-    CustomerInformation save(CustomerInformation u);
 }
