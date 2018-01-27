@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "consultant__group_user", schema = "back", catalog = "")
+@Table(name = "consultant_group_user", schema = "back", catalog = "")
 public class ConsultantGroupUser {
     private Long id;
     private Byte status;
