@@ -1,6 +1,7 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -12,7 +13,8 @@ public class ConversationMessage {
     private Timestamp dateTime;
     private String attachedFile;
     private Conversation conversationByConversationId;
-    private ConversationVideo conversationVideoByConversationVideoId;
+    private Time videpDuration;
+    private String videoExternalLink;
 
     @Id
     @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,13 +103,24 @@ public class ConversationMessage {
         this.conversationByConversationId = conversationByConversationId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "conversation_video_id", referencedColumnName = "id")
-    public ConversationVideo getConversationVideoByConversationVideoId() {
-        return conversationVideoByConversationVideoId;
+    @Basic
+    @Column(name = "video_duration", nullable = true)
+    public Time getVidepDuration() {
+        return videpDuration;
     }
 
-    public void setConversationVideoByConversationVideoId(ConversationVideo conversationVideoByConversationVideoId) {
-        this.conversationVideoByConversationVideoId = conversationVideoByConversationVideoId;
+    public void setVidepDuration(Time duration) {
+        this.videpDuration = duration;
     }
+
+    @Basic
+    @Column(name = "video_external_link", nullable = true, length = 50)
+    public String getVideoExternalLink() {
+        return videoExternalLink;
+    }
+
+    public void setVideoExternalLink(String externalLink) {
+        this.videoExternalLink = externalLink;
+    }
+
 }
