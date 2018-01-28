@@ -1,5 +1,12 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nouhoun.springboot.jwt.integration.deserializer.ConsultantGroupUserDeserializer;
+import com.nouhoun.springboot.jwt.integration.deserializer.UserDeserializer;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
@@ -15,12 +22,15 @@ public class ConsultantInformation {
     private Date licenseUntil;
     private Time availableFrom;
     private Time availableUntil;
-
-
     private ConsultantGroupUser consultantGroupUser;
 
     @ManyToOne
     @JoinColumn(name="consultant_group_user_id")
+    @JsonDeserialize(using = ConsultantGroupUserDeserializer.class)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     public ConsultantGroupUser getConsultantGroupUser() {
         return consultantGroupUser;
     }

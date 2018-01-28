@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/customer_information")
-public class CustomerInformationController extends CrudAbstract<CustomerInformation, Long> {
+public class    CustomerInformationController extends CrudAbstract<CustomerInformation, Long> {
     @Autowired
     private CustomerInformationService customerInformationService;
 

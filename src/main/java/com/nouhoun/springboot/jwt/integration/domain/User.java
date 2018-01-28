@@ -2,9 +2,6 @@ package com.nouhoun.springboot.jwt.integration.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -112,7 +109,7 @@ public class User {
     }
 
 
-    @OneToMany(mappedBy = "userByUserId")
+    @OneToMany(mappedBy = "user")
     public Collection<ConsultantGroupUser> getConsultantGroupUsersById() {
         return consultantGroupUsersById;
     }

@@ -1,5 +1,12 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nouhoun.springboot.jwt.integration.deserializer.ConsultantGroupDeserializer;
+import com.nouhoun.springboot.jwt.integration.deserializer.UserDeserializer;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -10,10 +17,10 @@ public class ConsultantGroupUser {
     private Byte status;
     private Integer videoTarif;
     private Integer conversationTarif;
-    private User userByUserId;
-    private ConsultantGroup consultantGroupByConsultantGroutId;
-    private ConsultantInformation consultantInformationByUserId;
-    private Collection<Conversation> conversationsById;
+    private User user;
+    private ConsultantGroup consultantGroup;
+    private Collection<ConsultantInformation> consultantInformation;
+    private Collection<Conversation> conversations;
 
     @Id
     @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,40 +89,50 @@ public class ConsultantGroupUser {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public User getUserByUserId() {
-        return userByUserId;
+    @JsonDeserialize(using = UserDeserializer.class)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    public User getUser() {
+        return user;
     }
 
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @ManyToOne
     @JoinColumn(name = "consultant_grout_id", referencedColumnName = "id", nullable = false)
-    public ConsultantGroup getConsultantGroupByConsultantGroutId() {
-        return consultantGroupByConsultantGroutId;
+    @JsonDeserialize(using = ConsultantGroupDeserializer.class)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    public ConsultantGroup getConsultantGroup() {
+        return consultantGroup;
     }
 
-    public void setConsultantGroupByConsultantGroutId(ConsultantGroup consultantGroupByConsultantGroutId) {
-        this.consultantGroupByConsultantGroutId = consultantGroupByConsultantGroutId;
+    public void setConsultantGroup(ConsultantGroup consultantGroupByConsultantGroutId) {
+        this.consultantGroup = consultantGroupByConsultantGroutId;
     }
 
-//    @OneToOne
+    @OneToMany(mappedBy = "consultantGroupUser")
 //    @JoinColumn(name = "user_id", referencedColumnName = "consultant_group_user_id", nullable = false)
-//    public ConsultantInformation getConsultantInformationByUserId() {
-//        return consultantInformationByUserId;
-//    }
+    public Collection<ConsultantInformation> getConsultantInformation() {
+        return consultantInformation;
+    }
 
-//    public void setConsultantInformationByUserId(ConsultantInformation consultantInformationByUserId) {
-//        this.consultantInformationByUserId = consultantInformationByUserId;
-//    }
+    public void setConsultantInformation(Collection<ConsultantInformation> consultantInformation) {
+        this.consultantInformation = consultantInformation;
+    }
 
     @OneToMany(mappedBy = "consultantGroupUserByConsultantGroupUserId")
-    public Collection<Conversation> getConversationsById() {
-        return conversationsById;
+    public Collection<Conversation> getConversations() {
+        return conversations;
     }
 
-    public void setConversationsById(Collection<Conversation> conversationsById) {
-        this.conversationsById = conversationsById;
+    public void setConversations(Collection<Conversation> conversationsById) {
+        this.conversations = conversationsById;
     }
 }

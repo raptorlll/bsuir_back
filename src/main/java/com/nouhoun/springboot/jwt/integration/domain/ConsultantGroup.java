@@ -91,7 +91,7 @@ public class ConsultantGroup {
         return result;
     }
 
-    @OneToMany(mappedBy = "consultantGroupByConsultantGroutId")
+    @OneToMany(mappedBy = "consultantGroup")
     public Collection<ConsultantGroupUser> getConsultantGroupUsersById() {
         return consultantGroupUsersById;
     }
