@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/consultant_group")
+@RequestMapping("/customer_payment")
 public class CustomerPaymentController extends CrudAbstract<CustomerPayment, Long> {
     @Autowired
     private CustomerPaymentService service;

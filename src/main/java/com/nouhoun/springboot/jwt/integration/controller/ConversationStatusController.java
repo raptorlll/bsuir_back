@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/consultant_group")
+@RequestMapping("/conversation_status")
 public class ConversationStatusController extends CrudAbstract<ConversationStatus, Long> {
     @Autowired
     private ConversationStatusService service;
