@@ -1,0 +1,264 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Bsuir back",
+		"_postman_id": "24f4839b-69d8-466b-918b-1ec493caa7dd",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user/registration new user",
+			"request": {
+				"url": "http://localhost:8080/user/registration",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"username\", \n\t\"password\": \"pass\",\n\t\"firstName\": \"firstName\",\n\t\"lastName\": \"lastName\",\n\t\"email\": \"examle@gmail.com\",\n\t\"roles\": [\"ADMIN_USER\", \"CUSTOMER\"]\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "user/client_information add",
+			"request": {
+				"url": "http://localhost:8080/customer_information",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"birthData\": \"2017-10-10\",\n\t\"user\": \"7\",\n\t\"additionalInformation\": \"sdfsdfsdf\",\n\t\"primary\": \"0\"\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "user/client_information GET ALL",
+			"request": {
+				"url": "http://localhost:8080/customer_information",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"birthData\": \"2017-10-10\",\n\t\"user\": \"7\",\n\t\"additionalInformation\": \"sdfsdfsdf\",\n\t\"primary\": \"0\"\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "user/client_information GET ENTITY",
+			"request": {
+				"url": "http://localhost:8080/customer_information/12",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"birthData\": \"2017-10-10\",\n\t\"user\": \"7\",\n\t\"additionalInformation\": \"sdfsdfsdf\",\n\t\"primary\": \"0\"\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "user/client_information PUT",
+			"request": {
+				"url": "http://localhost:8080/customer_information/7",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"birthData\": \"2017-10-10\",\n\t\"user\": \"7\",\n\t\"additionalInformation\": \"sdfsdfsdf\",\n\t\"primary\": \"0\"\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "user/client_information DELETE",
+			"request": {
+				"url": "http://localhost:8080/customer_information/11",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"birthData\": \"2017-10-10\",\n\t\"user\": \"7\",\n\t\"additionalInformation\": \"sdfsdfsdf\",\n\t\"primary\": \"0\"\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "consultant_group POST",
+			"request": {
+				"url": "http://localhost:8080/consultant_group",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"name test\",\n\t\"description\": \"Description test\",\n\t\"videoTarif\": 455,\n\t\"conversationTarif\": 10\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "consultant_group GET",
+			"request": {
+				"url": "http://localhost:8080/consultant_group",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"name test\",\n\t\"description\": \"Description test\",\n\t\"videoTarif\": 455,\n\t\"conversationTarif\": 10\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "consultant_group_user POST",
+			"request": {
+				"url": "http://localhost:8080/consultant_group_user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\": \"0\",\n\t\"description\": \"Description test\",\n\t\"videoTarif\": 455,\n\t\"conversationTarif\": 20,\n\t\"user\": 6,\n\t\"consultantGroup\": 4\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "consultant_group_user GET",
+			"request": {
+				"url": "http://localhost:8080/consultant_group_user",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\": \"0\",\n\t\"description\": \"Description test\",\n\t\"videoTarif\": 455,\n\t\"conversationTarif\": 20,\n\t\"user\": 6,\n\t\"consultantGroup\": 4\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "consultant_information POST with file",
+			"request": {
+				"url": "http://localhost:8080/consultant_information/save",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "Log1.png"
+						},
+						{
+							"key": "data",
+							"value": "{\n\t\"education\": \"MIT\",\n\t\"degree\": \"PhD\",\n\t\"licenseNumber\": \"License by NY Government\",\n\t\"licenseFile\": \"file.png\",\n\t\"licenseUntil\": \"2017-12-30\",\n\t\"availableFrom\": \"09:00:00\",\n\t\"availableUntil\": \"16:00:00\",\n\t\"consultantGroupUser\": 2\n}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "consultant_information POST Without file",
+			"request": {
+				"url": "http://localhost:8080/consultant_information",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \t\r\n\t\"education\": \"MIT\", \t\r\n\t\"degree\": \"PhD\", \t\r\n\t\"licenseNumber\": \"License by NY Government\", \t\r\n\t\"licenseFile\": \"file.png\", \t\r\n\t\"licenseUntil\": \"2017-12-30\", \t\r\n\t\"availableFrom\": \"09:00:00\", \t\r\n\t\"availableUntil\": \"16:00:00\", \t\r\n\t\"consultantGroupUser\": 2\r\n}\r\n"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		}
+	]
+}

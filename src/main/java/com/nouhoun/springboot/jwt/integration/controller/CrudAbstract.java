@@ -23,24 +23,29 @@ abstract public class CrudAbstract<T, K> {
     }
 
     @GetMapping(value = "")
-    public Collection<T> getTs() {
+    public Collection<T> getItems() {
         return getService().findAll();
     }
 
     @GetMapping(value = "/{id}")
-    public T getT(@PathVariable(value = "id") K id) {
+    public T getItem(@PathVariable(value = "id") K id) {
         return getService().findOne(id);
     }
 
     @PutMapping(value = "/{id}")
-    public T putT(@PathVariable(value = "id") K id) {
+    public T updateItem(@PathVariable(value = "id") K id, @RequestBody T information) {
         System.out.println("put");
 
-        return getService().findOne(id);
+        try{
+            return getService().update(information);
+        } catch (Exception e) {
+            System.out.println("Error while put");
+        }
+        return null;
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity deleteT(@PathVariable(value = "id") K id) {
+    public ResponseEntity deleteItem(@PathVariable(value = "id") K id) {
         getService().delete(id);
 
         return new ResponseEntity<>(null, HttpStatus.OK);

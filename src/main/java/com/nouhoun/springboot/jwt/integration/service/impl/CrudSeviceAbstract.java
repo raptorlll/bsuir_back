@@ -15,6 +15,10 @@ abstract class CrudSeviceAbstract<T, K extends Serializable> {
         getRepository().delete(id);
     }
 
+    public T update(T u) {
+        return getRepository().save(u);
+    }
+
     public T findOne(K id) {
         return getRepository().findOne(id);
     }

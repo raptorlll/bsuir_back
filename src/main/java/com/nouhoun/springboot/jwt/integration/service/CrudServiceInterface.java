@@ -11,5 +11,7 @@ public interface CrudServiceInterface<T, K>  {
 
     T findOne(K id);
 
+    T update(T u);
+
     void delete(K id);
 }
