@@ -1,8 +1,6 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nouhoun.springboot.jwt.integration.deserializer.ConsultantGroupDeserializer;
 import com.nouhoun.springboot.jwt.integration.deserializer.UserDeserializer;
@@ -90,10 +88,10 @@ public class ConsultantGroupUser {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     @JsonDeserialize(using = UserDeserializer.class)
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
+//    @JsonIdentityInfo(
+//            generator = ObjectIdGenerators.PropertyGenerator.class,
+//            property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
     public User getUser() {
         return user;
     }
@@ -105,10 +103,10 @@ public class ConsultantGroupUser {
     @ManyToOne
     @JoinColumn(name = "consultant_grout_id", referencedColumnName = "id", nullable = false)
     @JsonDeserialize(using = ConsultantGroupDeserializer.class)
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
+//    @JsonIdentityInfo(
+//            generator = ObjectIdGenerators.PropertyGenerator.class,
+//            property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
     public ConsultantGroup getConsultantGroup() {
         return consultantGroup;
     }
@@ -118,6 +116,7 @@ public class ConsultantGroupUser {
     }
 
     @OneToMany(mappedBy = "consultantGroupUser")
+    @JsonIgnore
 //    @JoinColumn(name = "user_id", referencedColumnName = "consultant_group_user_id", nullable = false)
     public Collection<ConsultantInformation> getConsultantInformation() {
         return consultantInformation;
@@ -127,6 +126,7 @@ public class ConsultantGroupUser {
         this.consultantInformation = consultantInformation;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "consultantGroupUserByConsultantGroupUserId")
     public Collection<Conversation> getConversations() {
         return conversations;

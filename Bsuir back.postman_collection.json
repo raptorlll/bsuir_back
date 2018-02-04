@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Bsuir back",
-		"_postman_id": "24f4839b-69d8-466b-918b-1ec493caa7dd",
+		"_postman_id": "d3ab9797-3868-2613-ef56-1e5ff3c1fee1",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -208,6 +208,26 @@
 			"response": []
 		},
 		{
+			"name": "user GET",
+			"request": {
+				"url": "http://localhost:8080/user",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\": \"0\",\n\t\"description\": \"Description test\",\n\t\"videoTarif\": 455,\n\t\"conversationTarif\": 20,\n\t\"user\": 6,\n\t\"consultantGroup\": 4\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
 			"name": "consultant_information POST with file",
 			"request": {
 				"url": "http://localhost:8080/consultant_information/save",
@@ -226,7 +246,42 @@
 							"key": "file",
 							"description": "",
 							"type": "file",
-							"src": "Log1.png"
+							"src": "Log1.png",
+							"value": ""
+						},
+						{
+							"key": "data",
+							"value": "{\n\t\"education\": \"MIT\",\n\t\"degree\": \"PhD\",\n\t\"licenseNumber\": \"License by NY Government\",\n\t\"licenseFile\": \"file.png\",\n\t\"licenseUntil\": \"2017-12-30\",\n\t\"availableFrom\": \"09:00:00\",\n\t\"availableUntil\": \"16:00:00\",\n\t\"consultantGroupUser\": 2\n}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "consultant_information GET",
+			"request": {
+				"url": "http://localhost:8080/consultant_information/save",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "Log1.png",
+							"value": ""
 						},
 						{
 							"key": "data",

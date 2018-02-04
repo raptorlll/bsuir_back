@@ -2,6 +2,7 @@ package com.nouhoun.springboot.jwt.integration.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nouhoun.springboot.jwt.integration.domain.*;
+import com.nouhoun.springboot.jwt.integration.service.CrudServiceInterface;
 import com.nouhoun.springboot.jwt.integration.service.CustomerInformationService;
 import com.nouhoun.springboot.jwt.integration.service.RoleService;
 import com.nouhoun.springboot.jwt.integration.service.UserService;
@@ -17,15 +18,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by nydiarra on 06/05/17.
- */
 @RestController
 @RequestMapping("/user")
-public class UserController {
-//    @Autowired
-//    private GenericService userService;
-
+public class UserController extends CrudAbstract<User, Long>  {
     @Value("${security.encoding-strength}")
     private Integer encodingStrength;
 
@@ -33,12 +28,18 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private  CrudServiceInterface<User, Long> service;
+
+    @Autowired
     private RoleService roleService;
 
     @Autowired
     private CustomerInformationService customerInformationService;
 
-
+    @Override
+    public CrudServiceInterface<User, Long> getService() {
+        return service;
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public UserJson registerUserAccount(@RequestBody UserJson userJson) {
@@ -61,35 +62,10 @@ public class UserController {
             }
         }
 
-//        Optional<Role> roleCustomer = roles.stream().filter(role -> role.getRoleName().equals("CUSTOMER") ).findFirst();
-//
-//        Optional<Role> roleConsultant = roles.stream().filter(role -> role.getRoleName().equals("CONSULTANT")).findFirst();
-
-//        if (roleConsultant.isPresent()) {
-//            // logic
-//            ConsultantInformation consultantInformation = createConsultantInformation(userJson);
-//        }
-//
-//        if (roleCustomer.isPresent()) {
-//            // logic
-//        }
         user.setRoles(roles);
 
         userService.save(user);
-
-//        if (!result.hasErrors()) {
-//            registered = createUserAccount(accountDto, result);
-//        }
-//        if (registered == null) {
-//            result.rejectValue("email", "message.regError");
-//        }
         userJson.setId(user.getId());
         return userJson;
     }
-
-//    private ConsultantInformation createConsultantInformation(UserJson userJson) {
-//        ConsultantInformation consultantInformation = new ConsultantInformation();
-//        consultantInformation.
-//    }
-
 }

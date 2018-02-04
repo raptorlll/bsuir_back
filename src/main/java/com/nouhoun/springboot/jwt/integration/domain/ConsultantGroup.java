@@ -1,5 +1,7 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -11,7 +13,7 @@ public class ConsultantGroup {
     private String description;
     private Integer videoTarif;
     private Integer conversationTarif;
-    private Collection<ConsultantGroupUser> consultantGroupUsersById;
+    private Collection<ConsultantGroupUser> consultantGroupUsers;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -92,11 +94,12 @@ public class ConsultantGroup {
     }
 
     @OneToMany(mappedBy = "consultantGroup")
-    public Collection<ConsultantGroupUser> getConsultantGroupUsersById() {
-        return consultantGroupUsersById;
+    @JsonIgnore
+    public Collection<ConsultantGroupUser> getConsultantGroupUsers() {
+        return consultantGroupUsers;
     }
 
-    public void setConsultantGroupUsersById(Collection<ConsultantGroupUser> consultantGroupUsersById) {
-        this.consultantGroupUsersById = consultantGroupUsersById;
+    public void setConsultantGroupUsers(Collection<ConsultantGroupUser> consultantGroupUsers) {
+        this.consultantGroupUsers = consultantGroupUsers;
     }
 }

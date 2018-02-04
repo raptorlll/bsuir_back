@@ -4,12 +4,8 @@ import com.nouhoun.springboot.jwt.integration.domain.User;
 
 import java.util.List;
 
-/**
- * Created by nydiarra on 06/05/17.
- */
-public interface UserService {
+public interface UserService extends CrudServiceInterface<User, Long> {
     User findByUsername(String username);
-
     List<User> findAllUsers();
     User findOne(Long id);
     User save(User u);

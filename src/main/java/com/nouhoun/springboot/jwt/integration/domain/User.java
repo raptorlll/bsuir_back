@@ -15,14 +15,12 @@ public class User {
     private String password;
     private String username;
     private String email;
-    private Collection<ConsultantGroupUser> consultantGroupUsersById;
-    private Collection<CustomerInformation> customerInformationsById;
-
-
-    private Collection<Role> roles;
     private String last_name;
     private String first_name;
 
+    private Collection<ConsultantGroupUser> consultantGroupUsersById;
+    private Collection<CustomerInformation> customerInformationsById;
+    private Collection<Role> roles;
 
     @Id
     @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -110,6 +108,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     public Collection<ConsultantGroupUser> getConsultantGroupUsersById() {
         return consultantGroupUsersById;
     }

@@ -4,18 +4,15 @@ import com.nouhoun.springboot.jwt.integration.domain.User;
 import com.nouhoun.springboot.jwt.integration.repository.UserRepository;
 import com.nouhoun.springboot.jwt.integration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by nydiarra on 07/05/17.
- */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends CrudSeviceAbstract<User, Long> implements UserService {
     @Autowired
     private UserRepository userRepository;
-
 
     @Override
     public User findByUsername(String username) {
@@ -30,6 +27,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User u) {
         return userRepository.save(u);
+    }
+
+    @Override
+    protected CrudRepository<User, Long> getRepository() {
+        return userRepository;
     }
 
     @Override
