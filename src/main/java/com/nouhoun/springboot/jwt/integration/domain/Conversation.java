@@ -1,5 +1,11 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.nouhoun.springboot.jwt.integration.deserializer.ConsultantGroupDeserializer;
+import com.nouhoun.springboot.jwt.integration.deserializer.ConsultantGroupUserDeserializer;
+import com.nouhoun.springboot.jwt.integration.deserializer.CustomerInformationDeserializer;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -7,11 +13,11 @@ import java.util.Collection;
 public class Conversation {
     private Long id;
     private Byte active;
-    private ConsultantGroupUser consultantGroupUserByConsultantGroupUserId;
-    private CustomerInformation customerInformationByCustomerInformationId;
+    private ConsultantGroupUser consultantGroupUser;
+    private CustomerInformation customerInformation;
     private Collection<ConversationMessage> conversationMessagesById;
-    private Collection<ConversationStatusHistory> conversationStatusHistoriesById;
-    private Collection<CustomerPayment> customerPaymentsById;
+    private Collection<ConversationStatusHistory> conversationStatusHistories;
+    private Collection<CustomerPayment> customerPayments;
 
     @Id
     @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,24 +61,27 @@ public class Conversation {
 
     @ManyToOne
     @JoinColumn(name = "consultant_group_user_id", nullable = false)
-    public ConsultantGroupUser getConsultantGroupUserByConsultantGroupUserId() {
-        return consultantGroupUserByConsultantGroupUserId;
+    @JsonDeserialize(using = ConsultantGroupUserDeserializer.class)
+    public ConsultantGroupUser getConsultantGroupUser() {
+        return consultantGroupUser;
     }
 
-    public void setConsultantGroupUserByConsultantGroupUserId(ConsultantGroupUser consultantGroupUserByConsultantGroupUserId) {
-        this.consultantGroupUserByConsultantGroupUserId = consultantGroupUserByConsultantGroupUserId;
+    public void setConsultantGroupUser(ConsultantGroupUser consultantGroupUser) {
+        this.consultantGroupUser = consultantGroupUser;
     }
 
     @ManyToOne
     @JoinColumn(name = "customer_information_id", referencedColumnName = "id", nullable = false)
-    public CustomerInformation getCustomerInformationByCustomerInformationId() {
-        return customerInformationByCustomerInformationId;
+    @JsonDeserialize(using = CustomerInformationDeserializer.class)
+    public CustomerInformation getCustomerInformation() {
+        return customerInformation;
     }
 
-    public void setCustomerInformationByCustomerInformationId(CustomerInformation customerInformationByCustomerInformationId) {
-        this.customerInformationByCustomerInformationId = customerInformationByCustomerInformationId;
+    public void setCustomerInformation(CustomerInformation customerInformation) {
+        this.customerInformation = customerInformation;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "conversationByConversationId")
     public Collection<ConversationMessage> getConversationMessagesById() {
         return conversationMessagesById;
@@ -82,21 +91,23 @@ public class Conversation {
         this.conversationMessagesById = conversationMessagesById;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "conversationByConversationId")
-    public Collection<ConversationStatusHistory> getConversationStatusHistoriesById() {
-        return conversationStatusHistoriesById;
+    public Collection<ConversationStatusHistory> getConversationStatusHistories() {
+        return conversationStatusHistories;
     }
 
-    public void setConversationStatusHistoriesById(Collection<ConversationStatusHistory> conversationStatusHistoriesById) {
-        this.conversationStatusHistoriesById = conversationStatusHistoriesById;
+    public void setConversationStatusHistories(Collection<ConversationStatusHistory> conversationStatusHistories) {
+        this.conversationStatusHistories = conversationStatusHistories;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "conversationByConversationId")
-    public Collection<CustomerPayment> getCustomerPaymentsById() {
-        return customerPaymentsById;
+    public Collection<CustomerPayment> getCustomerPayments() {
+        return customerPayments;
     }
 
-    public void setCustomerPaymentsById(Collection<CustomerPayment> customerPaymentsById) {
-        this.customerPaymentsById = customerPaymentsById;
+    public void setCustomerPayments(Collection<CustomerPayment> customerPayments) {
+        this.customerPayments = customerPayments;
     }
 }

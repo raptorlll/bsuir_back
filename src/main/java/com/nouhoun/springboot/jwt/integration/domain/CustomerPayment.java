@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class CustomerPayment {
     private Long id;
     private Timestamp dataTime;
-    private Conversation conversationByConversationId;
+    private Conversation conversation;
 
     @Id
     @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,11 +52,11 @@ public class CustomerPayment {
 
     @ManyToOne
     @JoinColumn(name = "conversation_id", referencedColumnName = "id", nullable = false)
-    public Conversation getConversationByConversationId() {
-        return conversationByConversationId;
+    public Conversation getConversation() {
+        return conversation;
     }
 
-    public void setConversationByConversationId(Conversation conversationByConversationId) {
-        this.conversationByConversationId = conversationByConversationId;
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 }

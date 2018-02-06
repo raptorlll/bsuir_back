@@ -12,8 +12,8 @@ public class ConversationMessage {
     private Byte isConsultantMessage;
     private Timestamp dateTime;
     private String attachedFile;
-    private Conversation conversationByConversationId;
-    private Time videpDuration;
+    private Conversation conversation;
+    private Time videoDuration;
     private String videoExternalLink;
 
     @Id
@@ -95,22 +95,22 @@ public class ConversationMessage {
 
     @ManyToOne
     @JoinColumn(name = "conversation_id", referencedColumnName = "id", nullable = false)
-    public Conversation getConversationByConversationId() {
-        return conversationByConversationId;
+    public Conversation getConversation() {
+        return conversation;
     }
 
-    public void setConversationByConversationId(Conversation conversationByConversationId) {
-        this.conversationByConversationId = conversationByConversationId;
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
     @Basic
     @Column(name = "video_duration", nullable = true)
-    public Time getVidepDuration() {
-        return videpDuration;
+    public Time getVideoDuration() {
+        return videoDuration;
     }
 
-    public void setVidepDuration(Time duration) {
-        this.videpDuration = duration;
+    public void setVideoDuration(Time duration) {
+        this.videoDuration = duration;
     }
 
     @Basic
