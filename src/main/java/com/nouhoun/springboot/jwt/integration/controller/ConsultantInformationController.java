@@ -34,16 +34,10 @@ public class ConsultantInformationController extends CrudAbstract<ConsultantInfo
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ConsultantInformation saveClientInformationWithFile(
-//        @RequestParam("data") ConsultantInformation information,
             @RequestParam("data") String informationString,
-            @RequestParam("file") MultipartFile file
+            @RequestParam(value = "file",  required = false) MultipartFile file
     ) {
         ConsultantInformation consultantInformation = null;
-
-        ApplicationHome home = new ApplicationHome(this.getClass());
-
-
-        ObjectMapper objectMapper = new ObjectMapper();
 
         try {
             consultantInformation = jacksonObjectMapper.readValue(informationString, ConsultantInformation.class);
@@ -51,20 +45,17 @@ public class ConsultantInformationController extends CrudAbstract<ConsultantInfo
             e.printStackTrace();
         }
 
-        System.out.println("!!");
-        if (file.isEmpty()) {
-            System.out.println("Empty file");
+        if (file==null || file.isEmpty()) {
+            service.save(consultantInformation);
+            return consultantInformation;
         }
 
         try {
-
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
 
-//            redirectAttributes.addFlashAttribute("message",
-//                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
             if (consultantInformation != null) {
                 System.out.println("Logg");
                 consultantInformation.setLicenseFile(file.getOriginalFilename());
@@ -75,13 +66,7 @@ public class ConsultantInformationController extends CrudAbstract<ConsultantInfo
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        try {
-//            getService().save(information);
-//        }catch (Exception e){
-//            System.out.println("e");
-//        }
 
         return consultantInformation;
-//        return  information;
     }
 }

@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 public class ConversationStatusHistory {
     private Long id;
     private Timestamp dateTime;
-    private Conversation conversationByConversationId;
-    private ConversationStatus conversationStatusByConversationStatusId;
+    private Conversation conversation;
+    private ConversationStatus conversationStatuses;
 
     @Id
     @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,21 +53,21 @@ public class ConversationStatusHistory {
 
     @ManyToOne
     @JoinColumn(name = "conversation_id", referencedColumnName = "id", nullable = false)
-    public Conversation getConversationByConversationId() {
-        return conversationByConversationId;
+    public Conversation getConversation() {
+        return conversation;
     }
 
-    public void setConversationByConversationId(Conversation conversationByConversationId) {
-        this.conversationByConversationId = conversationByConversationId;
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
     @ManyToOne
     @JoinColumn(name = "conversation_status_id", referencedColumnName = "id", nullable = false)
-    public ConversationStatus getConversationStatusByConversationStatusId() {
-        return conversationStatusByConversationStatusId;
+    public ConversationStatus getConversationStatuses() {
+        return conversationStatuses;
     }
 
-    public void setConversationStatusByConversationStatusId(ConversationStatus conversationStatusByConversationStatusId) {
-        this.conversationStatusByConversationStatusId = conversationStatusByConversationStatusId;
+    public void setConversationStatuses(ConversationStatus conversationStatuses) {
+        this.conversationStatuses = conversationStatuses;
     }
 }

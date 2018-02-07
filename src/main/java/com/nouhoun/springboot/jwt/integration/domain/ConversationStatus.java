@@ -9,7 +9,7 @@ public class ConversationStatus {
     private Long id;
     private String name;
     private String description;
-    private Collection<ConversationStatusHistory> conversationStatusHistoriesById;
+    private Collection<ConversationStatusHistory> conversationStatusHistories;
 
     @Id
     @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,12 +63,12 @@ public class ConversationStatus {
         return result;
     }
 
-    @OneToMany(mappedBy = "conversationStatusByConversationStatusId")
-    public Collection<ConversationStatusHistory> getConversationStatusHistoriesById() {
-        return conversationStatusHistoriesById;
+    @OneToMany(mappedBy = "conversationStatuses")
+    public Collection<ConversationStatusHistory> getConversationStatusHistories() {
+        return conversationStatusHistories;
     }
 
-    public void setConversationStatusHistoriesById(Collection<ConversationStatusHistory> conversationStatusHistoriesById) {
-        this.conversationStatusHistoriesById = conversationStatusHistoriesById;
+    public void setConversationStatusHistories(Collection<ConversationStatusHistory> conversationStatusHistories) {
+        this.conversationStatusHistories = conversationStatusHistories;
     }
 }

@@ -2,7 +2,6 @@ package com.nouhoun.springboot.jwt.integration.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.nouhoun.springboot.jwt.integration.deserializer.ConsultantGroupDeserializer;
 import com.nouhoun.springboot.jwt.integration.deserializer.ConsultantGroupUserDeserializer;
 import com.nouhoun.springboot.jwt.integration.deserializer.CustomerInformationDeserializer;
 
@@ -15,7 +14,7 @@ public class Conversation {
     private Byte active;
     private ConsultantGroupUser consultantGroupUser;
     private CustomerInformation customerInformation;
-    private Collection<ConversationMessage> conversationMessagesById;
+    private Collection<ConversationMessage> conversationMessages;
     private Collection<ConversationStatusHistory> conversationStatusHistories;
     private Collection<CustomerPayment> customerPayments;
 
@@ -82,17 +81,17 @@ public class Conversation {
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy = "conversationByConversationId")
-    public Collection<ConversationMessage> getConversationMessagesById() {
-        return conversationMessagesById;
+    @OneToMany(mappedBy = "conversation")
+    public Collection<ConversationMessage> getConversationMessages() {
+        return conversationMessages;
     }
 
-    public void setConversationMessagesById(Collection<ConversationMessage> conversationMessagesById) {
-        this.conversationMessagesById = conversationMessagesById;
+    public void setConversationMessages(Collection<ConversationMessage> conversationMessages) {
+        this.conversationMessages = conversationMessages;
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy = "conversationByConversationId")
+    @OneToMany(mappedBy = "conversation")
     public Collection<ConversationStatusHistory> getConversationStatusHistories() {
         return conversationStatusHistories;
     }
@@ -102,7 +101,7 @@ public class Conversation {
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy = "conversationByConversationId")
+    @OneToMany(mappedBy = "conversation")
     public Collection<CustomerPayment> getCustomerPayments() {
         return customerPayments;
     }

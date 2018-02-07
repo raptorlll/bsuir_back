@@ -127,7 +127,7 @@ public class ConsultantGroupUser {
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy = "consultantGroupUserByConsultantGroupUserId")
+    @OneToMany(mappedBy = "consultantGroupUser")
     public Collection<Conversation> getConversations() {
         return conversations;
     }

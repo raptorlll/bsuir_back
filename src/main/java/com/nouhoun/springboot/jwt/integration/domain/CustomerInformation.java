@@ -91,7 +91,7 @@ public class CustomerInformation {
         return result;
     }
 
-    @OneToMany(mappedBy = "customerInformationByCustomerInformationId")
+    @OneToMany(mappedBy = "customerInformation")
     public Collection<Conversation> getConversations() {
         return conversations;
     }

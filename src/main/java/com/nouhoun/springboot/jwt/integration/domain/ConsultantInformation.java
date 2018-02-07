@@ -27,10 +27,10 @@ public class ConsultantInformation {
     @ManyToOne
     @JoinColumn(name="consultant_group_user_id")
     @JsonDeserialize(using = ConsultantGroupUserDeserializer.class)
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
+//    @JsonIdentityInfo(
+//            generator = ObjectIdGenerators.PropertyGenerator.class,
+//            property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
     public ConsultantGroupUser getConsultantGroupUser() {
         return consultantGroupUser;
     }
