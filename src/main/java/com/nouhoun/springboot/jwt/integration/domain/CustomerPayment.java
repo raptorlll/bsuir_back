@@ -1,13 +1,15 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "customer_payment", schema = "back", catalog = "")
 public class CustomerPayment {
     private Long id;
-    private Timestamp dataTime;
+    private Date dataTime;
+    private Long amount;
     private Conversation conversation;
 
     @Id
@@ -21,19 +23,30 @@ public class CustomerPayment {
     }
 
     @Basic
-    @Column(name = "data_time", nullable = false)
-    public Timestamp getDataTime() {
+    @Column(name = "data_time", updatable=false)
+    public Date getDataTime() {
         return dataTime;
     }
 
-    public void setDataTime(Timestamp dataTime) {
+    public void setDataTime(Date dataTime) {
         this.dataTime = dataTime;
+    }
+
+    @Basic
+    @Column(name = "amount", nullable = false)
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
 
         CustomerPayment that = (CustomerPayment) o;
 
