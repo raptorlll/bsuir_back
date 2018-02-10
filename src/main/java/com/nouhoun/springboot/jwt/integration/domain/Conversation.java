@@ -58,7 +58,7 @@ public class Conversation {
         return result;
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "consultant_group_user_id", nullable = false)
     @JsonDeserialize(using = ConsultantGroupUserDeserializer.class)
     public ConsultantGroupUser getConsultantGroupUser() {
@@ -69,7 +69,7 @@ public class Conversation {
         this.consultantGroupUser = consultantGroupUser;
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "customer_information_id", referencedColumnName = "id", nullable = false)
     @JsonDeserialize(using = CustomerInformationDeserializer.class)
     public CustomerInformation getCustomerInformation() {

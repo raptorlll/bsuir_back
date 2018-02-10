@@ -6,10 +6,6 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-//@JsonIdentityInfo(
-//        scope=User.class,
-//        generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "id")
 public class User {
     private Long id;
     private String password;

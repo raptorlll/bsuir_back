@@ -1,9 +1,6 @@
 package com.nouhoun.springboot.jwt.integration.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.nouhoun.springboot.jwt.integration.deserializer.UserDeserializer;
 
@@ -13,10 +10,6 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "customer_information", schema = "back", catalog = "")
-@JsonIdentityInfo(
-        scope=CustomerInformation.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
 public class CustomerInformation {
     private Long id;
     private Date birthData;
@@ -86,12 +79,12 @@ public class CustomerInformation {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (birthData != null ? birthData.hashCode() : 0);
-//        result = 31 * result + Arrays.hashCode(additionalInformation);
         result = 31 * result + (primary != null ? primary.hashCode() : 0);
         return result;
     }
 
     @OneToMany(mappedBy = "customerInformation")
+    @JsonIgnore
     public Collection<Conversation> getConversations() {
         return conversations;
     }
