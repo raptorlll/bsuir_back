@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 @RequestMapping("/consultant_information")
 public class ConsultantInformationController extends CrudAbstract<ConsultantInformation, Long> {
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "assets//uploads//";
+    public static String UPLOADED_FOLDER = "assets//uploads//";
     @Autowired
     private ObjectMapper jacksonObjectMapper;
 
