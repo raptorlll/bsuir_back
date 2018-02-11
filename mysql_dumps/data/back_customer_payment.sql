@@ -1,0 +1,2 @@
+INSERT INTO back.customer_payment (id, data_time, conversation_id, amount) VALUES (1, '2018-02-10 17:47:33', 1, 124);
+INSERT INTO back.customer_payment (id, data_time, conversation_id, amount) VALUES (2, '2018-02-10 17:45:54', 1, 444);

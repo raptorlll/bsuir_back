@@ -188,6 +188,26 @@
 			"response": []
 		},
 		{
+			"name": "consultant_group_user PUT",
+			"request": {
+				"url": "http://localhost:8080/consultant_group_user/10",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\": \"0\",\n\t\"description\": \"Description test\",\n\t\"videoTarif\": 455,\n\t\"conversationTarif\": 20,\n\t\"user\": 6,\n\t\"consultantGroup\": 4\n}"
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
 			"name": "consultant_group_user GET",
 			"request": {
 				"url": "http://localhost:8080/consultant_group_user",
@@ -266,6 +286,142 @@
 			"request": {
 				"url": "http://localhost:8080/consultant_information/save",
 				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "Log1.png",
+							"value": ""
+						},
+						{
+							"key": "data",
+							"value": "{\n\t\"education\": \"MIT\",\n\t\"degree\": \"PhD\",\n\t\"licenseNumber\": \"License by NY Government\",\n\t\"licenseFile\": \"file.png\",\n\t\"licenseUntil\": \"2017-12-30\",\n\t\"availableFrom\": \"09:00:00\",\n\t\"availableUntil\": \"16:00:00\",\n\t\"consultantGroupUser\": 2\n}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "conversation GET",
+			"request": {
+				"url": "http://localhost:8080/conversation",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "Log1.png",
+							"value": ""
+						},
+						{
+							"key": "data",
+							"value": "{\n\t\"education\": \"MIT\",\n\t\"degree\": \"PhD\",\n\t\"licenseNumber\": \"License by NY Government\",\n\t\"licenseFile\": \"file.png\",\n\t\"licenseUntil\": \"2017-12-30\",\n\t\"availableFrom\": \"09:00:00\",\n\t\"availableUntil\": \"16:00:00\",\n\t\"consultantGroupUser\": 2\n}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "conversation_message GET",
+			"request": {
+				"url": "http://localhost:8080/conversation_message",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "Log1.png",
+							"value": ""
+						},
+						{
+							"key": "data",
+							"value": "{\n\t\"education\": \"MIT\",\n\t\"degree\": \"PhD\",\n\t\"licenseNumber\": \"License by NY Government\",\n\t\"licenseFile\": \"file.png\",\n\t\"licenseUntil\": \"2017-12-30\",\n\t\"availableFrom\": \"09:00:00\",\n\t\"availableUntil\": \"16:00:00\",\n\t\"consultantGroupUser\": 2\n}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "customer_payment GET",
+			"request": {
+				"url": "http://localhost:8080/customer_payment",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"description": "",
+							"type": "file",
+							"src": "Log1.png",
+							"value": ""
+						},
+						{
+							"key": "data",
+							"value": "{\n\t\"education\": \"MIT\",\n\t\"degree\": \"PhD\",\n\t\"licenseNumber\": \"License by NY Government\",\n\t\"licenseFile\": \"file.png\",\n\t\"licenseUntil\": \"2017-12-30\",\n\t\"availableFrom\": \"09:00:00\",\n\t\"availableUntil\": \"16:00:00\",\n\t\"consultantGroupUser\": 2\n}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": "Registration"
+			},
+			"response": []
+		},
+		{
+			"name": "email GET",
+			"request": {
+				"url": "http://localhost:8080/user/email",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",

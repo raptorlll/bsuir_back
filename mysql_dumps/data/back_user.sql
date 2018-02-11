@@ -1,0 +1,14 @@
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (1, '821f498d827d4edad2ed0960408a98edceb661d9f34287ceda2962417881231a', 'customer', 'gmail@gmail.com', 'Name user', 'Last name user');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (2, '821f498d827d4edad2ed0960408a98edceb661d9f34287ceda2962417881231a', 'consultant', 'gmail@gmail.com', '', '');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (3, '821f498d827d4edad2ed0960408a98edceb661d9f34287ceda2962417881231a', 'admin', 'gmail@gmail.com', '', '');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (4, '341f24f767aeabdf39c01c2b5ff9513e6030b093fc234cb0d2b790c27d9b103b', 'username', 'examle@gmail.com', '', '');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (5, '341f24f767aeabdf39c01c2b5ff9513e6030b093fc234cb0d2b790c27d9b103b', 'username', 'examle@gmail.com', '', '');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (6, '341f24f767aeabdf39c01c2b5ff9513e6030b093fc234cb0d2b790c27d9b103b', 'username', 'examle@gmail.com', '', '');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (7, '341f24f767aeabdf39c01c2b5ff9513e6030b093fc234cb0d2b790c27d9b103b', 'username', 'examle@gmail.com', 'firstName', 'lastName');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (8, '341f24f767aeabdf39c01c2b5ff9513e6030b093fc234cb0d2b790c27d9b103b', 'username', 'examle@gmail.com', 'firstName', 'lastName');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (9, '149446a191ab8713f6abd627e23df16fa60391c0cba6870471ccc1e1bdc5cd76', 'client', 'gmail@gmail.com', 'client', 'clientlastname');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (10, 'd4a6e18ad0c18de53488f764fac17784244bec0a95e02c881ece820c3d84d979', 'cl', 'cl@cl.cl', 'cl', 'cl');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (11, '03042cf8100db386818cee4ff0f2972431a62ed78edbd09ac08accfabbefd818', 'sd', 'sd', 'sd', 'sd');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (12, 'f9c7af7ebcbf098b9f5f37361d1b168bb2e5b98d930ceef0f055377a8c94db61', 'ds', 'ds', 'sdsd', 'sd');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (13, '821f498d827d4edad2ed0960408a98edceb661d9f34287ceda2962417881231a', 'client2', 'cl', 'name', 'sdsdf');
+INSERT INTO back.user (id, password, username, email, first_name, last_name) VALUES (14, 'bd48b12afbfd15ed6b308e7aeb0d76168b7973efd0d1c31838d0a756b094c446', 'Pavel', 'lll@gmail.com', 'first_name', 'last_name');
