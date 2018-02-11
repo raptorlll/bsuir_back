@@ -2,10 +2,7 @@ package com.nouhoun.springboot.jwt.integration.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nouhoun.springboot.jwt.integration.domain.*;
-import com.nouhoun.springboot.jwt.integration.service.CrudServiceInterface;
-import com.nouhoun.springboot.jwt.integration.service.CustomerInformationService;
-import com.nouhoun.springboot.jwt.integration.service.RoleService;
-import com.nouhoun.springboot.jwt.integration.service.UserService;
+import com.nouhoun.springboot.jwt.integration.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -14,9 +11,7 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.nouhoun.springboot.jwt.integration.JsonModels.UserJson;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
@@ -36,9 +31,25 @@ public class UserController extends CrudAbstract<User, Long>  {
     @Autowired
     private CustomerInformationService customerInformationService;
 
+    @Autowired
+    private EmailService emailService;
+
     @Override
     public CrudServiceInterface<User, Long> getService() {
         return service;
+    }
+
+    @GetMapping("/email")
+    public String sendEmail(){
+        Map<String, Object> model = new HashMap<>();
+        User u = new User();
+        u.setLastName("Test");
+        model.put("user", u);
+
+        emailService.setContent("login", model)
+                .sendSimpleMessage("leon-polq@yandex.ru", "Hello");
+
+        return "Ok";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

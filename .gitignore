@@ -126,3 +126,5 @@ buildNumber.properties
 # End of https://www.gitignore.io/api/java,maven
 
 assets/uploads/*
+
+src/main/resources/application.properties
