@@ -1,7 +1,11 @@
 package com.leonov.springboot.jwt.integration.config;
 
+import de.bytefish.fcmjava.client.FcmClient;
+import de.bytefish.fcmjava.http.client.IFcmClient;
+import de.bytefish.fcmjava.http.options.IFcmClientSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -10,26 +14,28 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 
 @Configuration
-@EnableResourceServer
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-    @Autowired
-    private ResourceServerTokenServices tokenServices;
+public class FcmConfig extends ResourceServerConfigurerAdapter {
+    @Value("${fcm.api-key}")
+    private String apiKey;
 
-    @Value("${security.jwt.resource-ids}")
-    private String resourceIds;
+    @Value("${fcm.url}")
+    private String url;
 
-    @Override
-    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.resourceId(resourceIds).tokenServices(tokenServices);
+    @Bean
+    public IFcmClient fcmClient() {
+        return new FcmClient(new FcmSettings());
     }
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-                http
-                .requestMatchers()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/actuator/**", "/api-docs/**", "/user/**").permitAll()
-                .antMatchers("/springjwt/**" ).authenticated();
+    public class FcmSettings implements IFcmClientSettings {
+        @Override
+        public String getApiKey() {
+            return apiKey;
+        }
+
+        @Override
+        public String getFcmUrl() {
+            return url;
+        }
     }
+
 }

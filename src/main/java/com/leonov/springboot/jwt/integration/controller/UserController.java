@@ -34,6 +34,9 @@ public class UserController extends CrudAbstract<User, Long>  {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private FcmNotificationService pushService;
+
     @Override
     public CrudServiceInterface<User, Long> getService() {
         return service;
@@ -48,6 +51,13 @@ public class UserController extends CrudAbstract<User, Long>  {
 
         emailService.setContent("login", model)
                 .sendSimpleMessage("leon-polq@yandex.ru", "Hello");
+
+        return "Ok";
+    }
+
+    @GetMapping("/push")
+    public String push(){
+        pushService.sendPushMessage("Test message");
 
         return "Ok";
     }
