@@ -1,3 +1,7 @@
-<div>
-    You successfuly loggedin : ${user.lastName}
-</div>
+Consultation system
+
+You successfuly registered
+
+Lastname: ${user.lastName}
+Firstname: ${user.firstName}
+Email: ${user.email}

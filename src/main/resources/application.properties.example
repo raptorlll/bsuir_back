@@ -1,5 +1,7 @@
 security.oauth2.resource.filter-order=3
 
+istest=false
+
 security.signing-key=MaYzkSjmkzPC57L
 security.encoding-strength=256
 security.security-realm=Spring Boot JWT Example Realm

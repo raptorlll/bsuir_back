@@ -2,11 +2,11 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
     <persistence-unit name="NewPersistenceUnit">
-        <class>com.nouhoun.springboot.jwt.integration.domain.UserInformation</class>
-        <class>com.nouhoun.springboot.jwt.integration.domain.RandomCity</class>
-        <class>com.nouhoun.springboot.jwt.integration.domain.Role</class>
-        <class>com.nouhoun.springboot.jwt.integration.domain.User</class>
-        <class>com.nouhoun.springboot.jwt.integration.domain.UserRole</class>
+        <class>com.leonov.springboot.jwt.integration.domain.UserInformation</class>
+        <class>com.leonov.springboot.jwt.integration.domain.RandomCity</class>
+        <class>com.leonov.springboot.jwt.integration.domain.Role</class>
+        <class>com.leonov.springboot.jwt.integration.domain.User</class>
+        <class>com.leonov.springboot.jwt.integration.domain.UserRole</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3307/back"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
