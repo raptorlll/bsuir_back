@@ -6,6 +6,8 @@ import com.leonov.springboot.jwt.integration.domain.User;
 import com.leonov.springboot.jwt.integration.service.*;
 import com.leonov.springboot.jwt.integration.domain.*;
 import com.leonov.springboot.jwt.integration.service.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,6 +21,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/user")
+@Api(value="usercontroller", description="Operations with users")
 public class UserController extends CrudAbstractAuthUser<User, Long>  {
     @Value("${security.encoding-strength}")
     private Integer encodingStrength;
@@ -47,6 +50,7 @@ public class UserController extends CrudAbstractAuthUser<User, Long>  {
     }
 
     @GetMapping("/email")
+    @ApiOperation(value = "View a list of available products",response = String.class)
     public String sendEmail(){
         Map<String, Object> model = new HashMap<>();
         User u = new User();
