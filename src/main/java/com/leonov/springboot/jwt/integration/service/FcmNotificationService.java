@@ -1,6 +1,7 @@
 package com.leonov.springboot.jwt.integration.service;
 
 import com.leonov.springboot.jwt.integration.domain.ConsultantGroup;
+import com.leonov.springboot.jwt.integration.domain.User;
 import de.bytefish.fcmjava.http.client.IFcmClient;
 import de.bytefish.fcmjava.model.enums.ErrorCodeEnum;
 import de.bytefish.fcmjava.model.options.FcmMessageOptions;
@@ -12,10 +13,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 public interface FcmNotificationService {
-    public void sendPushMessage(String data);
+    public void sendPushMessage(String data, User user);
+    public void sendPushMessageToDevice(String token, String title, String body);
 }

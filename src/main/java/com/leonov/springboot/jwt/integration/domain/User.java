@@ -13,6 +13,8 @@ public class User {
     private String email;
     private String last_name;
     private String first_name;
+    private String token;
+
 
     private Collection<ConsultantGroupUser> consultantGroupUsersById;
     private Collection<CustomerInformation> customerInformationsById;
@@ -56,6 +58,16 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Basic
+    @Column(name = "token")
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override

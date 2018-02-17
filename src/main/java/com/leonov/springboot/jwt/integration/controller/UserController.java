@@ -8,14 +8,18 @@ import com.leonov.springboot.jwt.integration.domain.*;
 import com.leonov.springboot.jwt.integration.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.*;
 
 @RestController
 @RequestMapping("/user")
-public class UserController extends CrudAbstract<User, Long>  {
+public class UserController extends CrudAbstractAuthUser<User, Long>  {
     @Value("${security.encoding-strength}")
     private Integer encodingStrength;
 
@@ -56,10 +60,23 @@ public class UserController extends CrudAbstract<User, Long>  {
     }
 
     @GetMapping("/push")
+//    @PreAuthorize("")
     public String push(){
-        pushService.sendPushMessage("Test message");
+//        pushService.sendPushMessage("Test message");
 
         return "Ok";
+    }
+
+    @RequestMapping(value = "/token", method = RequestMethod.POST)
+    public String setToken(@RequestBody String token) {
+        User user = this.getCurrentUser();
+        user.setToken(token.replace("=", ""));
+//        this.userService.findByUsername(user.getUsername());
+        this.userService.save(user);
+
+        pushService.sendPushMessageToDevice(user.getToken(), "Test message", "Hello body");
+
+        return "Ok " + token;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -100,4 +117,7 @@ public class UserController extends CrudAbstract<User, Long>  {
         userJson.setId(user.getId());
         return userJson;
     }
+
+
+
 }
