@@ -20,5 +20,5 @@ import java.util.Map;
 
 public interface FcmNotificationService {
     public void sendPushMessage(String data, User user);
-    public void sendPushMessageToDevice(String token, String title, String body);
+    public void sendPushMessageToDevice(User token, String title, String body);
 }

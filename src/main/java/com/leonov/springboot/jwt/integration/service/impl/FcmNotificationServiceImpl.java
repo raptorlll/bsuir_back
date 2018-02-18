@@ -66,7 +66,11 @@ public class FcmNotificationServiceImpl implements FcmNotificationService {
     }
 
     @Override
-    public void sendPushMessageToDevice(String deviceToken, String title, String body) {
+    public void sendPushMessageToDevice(User user, String title, String body) {
+        if (user.getToken()==null) {
+            return;
+        }
+
         try {
             String result = "";
 
@@ -83,7 +87,7 @@ public class FcmNotificationServiceImpl implements FcmNotificationService {
 
             JSONObject json = new JSONObject();
 
-            json.put("to", java.net.URLDecoder.decode(deviceToken.trim(), "UTF-8"));
+            json.put("to", java.net.URLDecoder.decode(user.getToken().trim(), "UTF-8"));
             JSONObject info = new JSONObject();
             info.put("title", title); // Notification title
             info.put("body", body); // Notification

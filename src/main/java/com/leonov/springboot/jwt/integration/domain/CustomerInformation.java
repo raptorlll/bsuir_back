@@ -96,13 +96,6 @@ public class CustomerInformation {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonDeserialize(using = UserDeserializer.class)
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-//    @JsonManagedReference
-//    @JsonProperty("u")
-    //https://stackoverflow.com/questions/18306040/jackson-deserialize-jsonidentityreference-alwaysasid-true
     public User getUser() {
         return user;
     }

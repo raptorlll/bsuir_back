@@ -49,20 +49,6 @@ public class UserController extends CrudAbstractAuthUser<User, Long>  {
         return service;
     }
 
-    @GetMapping("/email")
-    @ApiOperation(value = "View a list of available products",response = String.class)
-    public String sendEmail(){
-        Map<String, Object> model = new HashMap<>();
-        User u = new User();
-        u.setLastName("Test");
-        model.put("user", u);
-
-        emailService.setContent("login", model)
-                .sendSimpleMessage("leon-polq@yandex.ru", "Hello");
-
-        return "Ok";
-    }
-
     @GetMapping("/push")
 //    @PreAuthorize("")
     public String push(){
@@ -75,10 +61,13 @@ public class UserController extends CrudAbstractAuthUser<User, Long>  {
     public String setToken(@RequestBody String token) {
         User user = this.getCurrentUser();
         user.setToken(token.replace("=", ""));
-//        this.userService.findByUsername(user.getUsername());
         this.userService.save(user);
 
-        pushService.sendPushMessageToDevice(user.getToken(), "Test message", "Hello body");
+        pushService.sendPushMessageToDevice(
+                user,
+                "Hello, " + user.getFirstName() + " " + user.getLastName(),
+                "You registered to the push notifications"
+        );
 
         return "Ok " + token;
     }
@@ -93,7 +82,7 @@ public class UserController extends CrudAbstractAuthUser<User, Long>  {
         user.setLastName(userJson.getLastName());
         user.setUsername(userJson.getUsername());
         user.setEmail(userJson.getEmail());
-        user.setPassword(passwordEncoder.encodePassword(userJson.getEmail(), ""));
+        user.setPassword(passwordEncoder.encodePassword(userJson.getPassword(), ""));
 
         List<Role> roles = new ArrayList<Role>();
 

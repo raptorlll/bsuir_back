@@ -1,7 +1,7 @@
-Consultation system
+Consultation system Awesom System
 
-You successfuly registered
+You successfuly loggedin
 
-Lastname: ${user.lastName}
-Firstname: ${user.firstName}
-Email: ${user.email}
+Lastname:   ${user.lastName}
+Firstname:  ${user.firstName}
+Email:      ${user.email}

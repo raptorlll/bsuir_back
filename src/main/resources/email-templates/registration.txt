@@ -1,0 +1,7 @@
+Consultation system
+
+You successfuly registered
+
+Lastname: ${user.lastName}
+Firstname: ${user.firstName}
+Email: ${user.email}

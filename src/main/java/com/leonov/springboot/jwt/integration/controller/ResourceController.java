@@ -24,7 +24,7 @@ public class ResourceController {
     private GenericService userService;
 
     @RequestMapping(value ="/getuserroles")
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
+    @PreAuthorize("isAuthenticated()")
     public Set<String> getuserroles(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
