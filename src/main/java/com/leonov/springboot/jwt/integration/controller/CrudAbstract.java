@@ -18,7 +18,7 @@ abstract public class CrudAbstract<T, K> {
         @ApiResponse(code = 201, message = "Successfully saved")
     })
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public T saveClientInformation(@RequestBody T information) {
+    public T saveItem(@RequestBody T information) {
         try {
             getService().save(information);
         }catch (Exception e){

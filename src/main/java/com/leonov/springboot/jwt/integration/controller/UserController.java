@@ -49,14 +49,6 @@ public class UserController extends CrudAbstractAuthUser<User, Long>  {
         return service;
     }
 
-    @GetMapping("/push")
-//    @PreAuthorize("")
-    public String push(){
-//        pushService.sendPushMessage("Test message");
-
-        return "Ok";
-    }
-
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public String setToken(@RequestBody String token) {
         User user = this.getCurrentUser();
@@ -70,6 +62,15 @@ public class UserController extends CrudAbstractAuthUser<User, Long>  {
         );
 
         return "Ok " + token;
+    }
+
+    @RequestMapping(value = "/client", method = RequestMethod.GET)
+    public Collection<User> getCustomers() {
+       return this.userService.findAllCustomers();
+    }
+    @RequestMapping(value = "/consultant", method = RequestMethod.GET)
+    public Collection<User> getConsultants() {
+       return this.userService.findAllConsultants();
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
@@ -110,7 +111,4 @@ public class UserController extends CrudAbstractAuthUser<User, Long>  {
         userJson.setId(user.getId());
         return userJson;
     }
-
-
-
 }

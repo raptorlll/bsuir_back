@@ -57,11 +57,11 @@ public class    CustomerInformationController extends CrudAbstractAuthUser<Custo
 
     @Override
     @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('CUSTOMER')")
-    public CustomerInformation saveClientInformation(@RequestBody CustomerInformation information) {
+    public CustomerInformation saveItem(@RequestBody CustomerInformation information) {
         if (isCustomer()){
             information.setUser(getCurrentUser());
         }
 
-        return super.saveClientInformation(information);
+        return super.saveItem(information);
     }
 }

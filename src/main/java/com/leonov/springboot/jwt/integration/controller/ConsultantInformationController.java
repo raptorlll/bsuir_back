@@ -1,10 +1,13 @@
 package com.leonov.springboot.jwt.integration.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.leonov.springboot.jwt.integration.domain.ConsultantGroupUser;
 import com.leonov.springboot.jwt.integration.domain.ConsultantInformation;
+import com.leonov.springboot.jwt.integration.domain.User;
 import com.leonov.springboot.jwt.integration.service.ConsultantInformationService;
 import com.leonov.springboot.jwt.integration.service.CrudServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,10 +15,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/consultant_information")
-public class ConsultantInformationController extends CrudAbstract<ConsultantInformation, Long> {
+public class ConsultantInformationController extends CrudAbstractAuthUser<ConsultantInformation, Long> {
     //Save the uploaded file to this folder
     public static String UPLOADED_FOLDER = "assets//uploads//";
     @Autowired
@@ -65,5 +70,27 @@ public class ConsultantInformationController extends CrudAbstract<ConsultantInfo
         }
 
         return consultantInformation;
+    }
+
+    @Override
+    @PreAuthorize("isAuthenticated()")
+    public Collection<ConsultantInformation> getItems() {
+        User userCurrent = getCurrentUser();
+        boolean isConsultant = isConsultant();
+
+        return super.getItems()
+                .stream()
+                .filter(consultantInformation -> {
+                    if (!isConsultant) {
+                        return true;
+                    }
+
+                    if(consultantInformation.getConsultantGroupUser().getUser().getId().equals(userCurrent.getId())){
+                        return true;
+                    }
+
+                    return false;
+                })
+                .collect(Collectors.toSet());
     }
 }
