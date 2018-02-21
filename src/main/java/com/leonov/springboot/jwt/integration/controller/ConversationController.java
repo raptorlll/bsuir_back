@@ -60,17 +60,31 @@ public class ConversationController extends CrudAbstractAuthUser<Conversation, L
     public Collection<Conversation> getItems() {
         User userCurrent = getCurrentUser();
         boolean isConsultant = isConsultant();
+        boolean isAdmin = isAdmin();
+        boolean isCustomer = isCustomer();
 
         return super.getItems()
                 .stream()
                 .filter(conversation -> {
-                    if (!isConsultant) {
+                    if (isAdmin) {
                         return true;
                     }
 
-                    if(conversation.getConsultantGroupUser().getUser().getId().equals(userCurrent.getId())){
+                    if (
+                        isConsultant
+                        && conversation.getActive().intValue() == 1
+                        && conversation.getConsultantGroupUser().getUser().getId().equals(userCurrent.getId())
+                    ) {
                         return true;
                     }
+
+                    if (
+                        isCustomer
+                        && conversation.getCustomerInformation().getUser().getId().equals(userCurrent.getId())
+                    ) {
+                        return true;
+                    }
+
 
                     return false;
                 })
