@@ -1,3 +1,7 @@
 Consultation system
 
-Have just created new conversation
+You have just received a message
+
+Message: ${message}
+
+For group: {group}

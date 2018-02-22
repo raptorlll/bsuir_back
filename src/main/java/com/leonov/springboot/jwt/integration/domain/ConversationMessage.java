@@ -1,6 +1,13 @@
 package com.leonov.springboot.jwt.integration.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.leonov.springboot.jwt.integration.deserializer.ConversationDeserializer;
+import com.leonov.springboot.jwt.integration.deserializer.UserDeserializer;
+
 import javax.persistence.*;
+import javax.xml.crypto.Data;
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -48,6 +55,7 @@ public class ConversationMessage {
 
     @Basic
     @Column(name = "date_time", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     public Timestamp getDateTime() {
         return dateTime;
     }
@@ -95,6 +103,7 @@ public class ConversationMessage {
 
     @ManyToOne
     @JoinColumn(name = "conversation_id", referencedColumnName = "id", nullable = false)
+    @JsonDeserialize(using = ConversationDeserializer.class)
     public Conversation getConversation() {
         return conversation;
     }

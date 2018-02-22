@@ -12,11 +12,21 @@ import java.util.Collection;
 public class Conversation {
     private Long id;
     private Byte active;
+    private int messagesCount;
     private ConsultantGroupUser consultantGroupUser;
     private CustomerInformation customerInformation;
     private Collection<ConversationMessage> conversationMessages;
     private Collection<ConversationStatusHistory> conversationStatusHistories;
     private Collection<CustomerPayment> customerPayments;
+
+    @Transient
+    public int getMessagesCount() {
+        return messagesCount;
+    }
+
+    public void setMessagesCount(int messagesCount) {
+        this.messagesCount = messagesCount;
+    }
 
     @Id
     @Column(name = "id", nullable = false) @GeneratedValue(strategy = GenerationType.IDENTITY)
