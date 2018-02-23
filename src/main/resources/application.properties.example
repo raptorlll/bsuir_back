@@ -22,3 +22,8 @@ spring.mail.username=<login user to smtp server>
 spring.mail.password=<login password to smtp server>
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
+
+fcm.url=https://fcm.googleapis.com/fcm/send
+fcm.api-key=REPLACE
+
+stripe.key=REPLACE

@@ -123,6 +123,7 @@ public class ConversationController extends CrudAbstractAuthUser<Conversation, L
                     .append(conversationStatusHistory.getDateTime().toString())
                     .append("\n");
         }
+
         String s = stringBuffer.toString();
 
         return  s;
