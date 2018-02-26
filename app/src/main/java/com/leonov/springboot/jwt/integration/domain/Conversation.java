@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name = "conversation", schema = "back", catalog = "")
 public class Conversation {
     private Long id;
     private Byte active;

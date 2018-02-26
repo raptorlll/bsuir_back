@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name = "user", schema = "back", catalog = "")
 public class User {
     private Long id;
     private String password;

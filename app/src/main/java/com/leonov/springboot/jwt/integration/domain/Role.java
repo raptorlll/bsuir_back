@@ -3,6 +3,7 @@ package com.leonov.springboot.jwt.integration.domain;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "role", schema = "back", catalog = "")
 public class Role {
     private Long id;
     private String description;

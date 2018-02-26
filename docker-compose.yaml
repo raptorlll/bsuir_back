@@ -6,14 +6,14 @@ services:
    environment:
     MYSQL_ROOT_PASSWORD: hellokoding
     MYSQL_ROOT_HOST: '%'
-    MYSQL_DATABASE: account
+    MYSQL_DATABASE: back
    ports:
    - "3306:3306"
    restart: always
 
   app:
     build: ./app
-    expose:
+    ports:
       - 80:8080
     command: mvn clean spring-boot:run
     depends_on:
