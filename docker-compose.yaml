@@ -1,0 +1,20 @@
+version: '3'
+services:
+  mysql:
+   container_name: some-mysql
+   image: mysql/mysql-server
+   environment:
+    MYSQL_ROOT_PASSWORD: hellokoding
+    MYSQL_ROOT_HOST: '%'
+    MYSQL_DATABASE: account
+   ports:
+   - "3306:3306"
+   restart: always
+
+  app:
+    build: ./app
+    expose:
+      - 80:8080
+    command: mvn clean spring-boot:run
+    depends_on:
+      - mysql
