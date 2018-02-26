@@ -39,9 +39,9 @@ public class DatasourceConfig {
 //
 //        return dataSource;
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.url("jdbc:mysql://localhost:3307/back");
+        dataSourceBuilder.url("jdbc:mysql://mysql:3306/back");
         dataSourceBuilder.username("root");
-        dataSourceBuilder.password("pass1234");
+        dataSourceBuilder.password("hellokoding");
 //        dataSourceBuilder.
         return dataSourceBuilder.build();
     }
