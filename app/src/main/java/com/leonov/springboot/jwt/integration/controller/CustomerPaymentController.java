@@ -51,7 +51,7 @@ public class CustomerPaymentController extends CrudAbstractAuthUser<CustomerPaym
                         return true;
                     }
 
-                    if (isCustomer && customerPayment.getConversation().getConsultantGroupUser().getUser().getId().equals(userCurrent.getId())) {
+                    if (isConsultant && customerPayment.getConversation().getConsultantGroupUser().getUser().getId().equals(userCurrent.getId())) {
                         return true;
                     }
 

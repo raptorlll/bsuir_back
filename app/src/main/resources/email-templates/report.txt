@@ -1,0 +1,6 @@
+Consultation system
+
+You have just received a report!
+Check attentively all numbers
+
+${data}
