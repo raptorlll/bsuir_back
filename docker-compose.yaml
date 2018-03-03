@@ -3,18 +3,20 @@ services:
   mysql:
    container_name: some-mysql
    image: mysql/mysql-server
+   volumes:
+     - "./mysql_data:/var/lib/mysql"
    environment:
     MYSQL_ROOT_PASSWORD: hellokoding
     MYSQL_ROOT_HOST: '%'
     MYSQL_DATABASE: back
    ports:
-   - "3306:3306"
+   - "3309:3306"
    restart: always
 
   app:
     build: ./app
     ports:
-      - 80:8080
+      - 8086:8080
     command: mvn clean spring-boot:run
     depends_on:
       - mysql
