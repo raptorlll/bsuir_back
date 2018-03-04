@@ -1,6 +1,7 @@
 package com.leonov.springboot.jwt.integration.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,22 +28,23 @@ import java.beans.PropertyVetoException;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.leonov.springboot.jwt.integration.repository")
 public class DatasourceConfig {
+    @Value("${database.url}")
+    private String url;
+
+    @Value("${database.username}")
+    private String username;
+
+    @Value("${database.password}")
+    private String password;
 
     @Bean
     public DataSource datasource() throws PropertyVetoException {
-//        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-//        EmbeddedDatabase dataSource = builder
-//                .setType(EmbeddedDatabaseType.H2)
-//                .addScript("sql-scripts/schema.sql")
-//                .addScript("sql-scripts/data.sql")
-//                .build();
-//
-//        return dataSource;
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.url("jdbc:mysql://mysql:3306/back");
-        dataSourceBuilder.username("root");
-        dataSourceBuilder.password("hellokoding");
-//        dataSourceBuilder.
+
+        dataSourceBuilder.url(url);
+        dataSourceBuilder.username(username);
+        dataSourceBuilder.password(password);
+
         return dataSourceBuilder.build();
     }
 
