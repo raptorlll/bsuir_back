@@ -27,3 +27,11 @@ fcm.url=https://fcm.googleapis.com/fcm/send
 fcm.api-key=REPLACE
 
 stripe.key=REPLACE
+
+database.url=jdbc:mysql://localhost:3307/back
+database.username=root
+database.password=pass1234
+#
+#database.url=jdbc:mysql://mysql:3306/back
+#database.username=root
+#database.password=hellokoding

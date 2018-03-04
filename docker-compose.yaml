@@ -10,13 +10,13 @@ services:
     MYSQL_ROOT_HOST: '%'
     MYSQL_DATABASE: back
    ports:
-   - "3309:3306"
+     - "3306:3306"
    restart: always
 
   app:
     build: ./app
     ports:
-      - 8086:8080
+      - 80:8080
     command: mvn clean spring-boot:run
     depends_on:
       - mysql
